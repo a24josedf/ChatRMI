@@ -23,7 +23,6 @@ public class ChatRMI {
                 ChatJFrame view = new ChatJFrame(config);
                 ChatController controller = new ChatController(view, config);
                 view.setVisible(true);
-                controller.publicarServicioLocal();
             }
         });
     }

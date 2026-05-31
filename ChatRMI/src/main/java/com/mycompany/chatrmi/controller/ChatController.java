@@ -38,6 +38,9 @@ public class ChatController {
     public void publicarServicioLocal() {
         try {
             this.config = view.getChatConfig();
+            if (!config.hasLocalData()) {
+                throw new IllegalArgumentException("Introduce usuario, puerto local y nombre local.");
+            }
             this.servicioLocal = new ChatServiceImpl(new ChatServiceImpl.MessageListener() {
                 @Override
                 public void onMessage(String from, String message) {
@@ -65,6 +68,9 @@ public class ChatController {
     private void conectarConNodoRemoto() {
         try {
             this.config = view.getChatConfig();
+            if (!config.hasRemoteData()) {
+                throw new IllegalArgumentException("Introduce host remoto, puerto remoto y nombre remoto.");
+            }
             Registry registryRemoto = LocateRegistry.getRegistry(config.getRemoteHost(), config.getRemotePort());
             this.servicioRemoto = (ChatService) registryRemoto.lookup(config.getRemoteServiceName());
             view.addSystemMessage("Conectado con "
@@ -84,6 +90,13 @@ public class ChatController {
     private void enviarMensaje() {
         String message = view.getMessage();
         if (message.isBlank()) {
+            return;
+        }
+
+        try {
+            this.config = view.getChatConfig();
+        } catch (Exception ex) {
+            mostrarError("Revisa los datos de configuracion", ex);
             return;
         }
 

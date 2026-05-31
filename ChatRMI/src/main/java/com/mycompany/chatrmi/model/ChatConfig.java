@@ -4,9 +4,6 @@
  */
 package com.mycompany.chatrmi.model;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-
 /**
  *
  * @author Carlos Dominguez Figueiras <carlosdominguezfigueiras@gmail.com>
@@ -36,21 +33,15 @@ public class ChatConfig {
                     args[3], Integer.parseInt(args[4]), args[5]);
         }
 
-        if (isPortInUse(1099)) {
-            return new ChatConfig("Usuario2", 1100, "ChatUsuario2",
-                    "localhost", 1099, "ChatUsuario1");
-        }
-
-        return new ChatConfig("Usuario1", 1099, "ChatUsuario1",
-                "localhost", 1100, "ChatUsuario2");
+        return new ChatConfig("", 0, "", "", 0, "");
     }
 
-    private static boolean isPortInUse(int port) {
-        try (ServerSocket socket = new ServerSocket(port)) {
-            return false;
-        } catch (IOException ex) {
-            return true;
-        }
+    public boolean hasLocalData() {
+        return !userName.isBlank() && localPort > 0 && !localServiceName.isBlank();
+    }
+
+    public boolean hasRemoteData() {
+        return !remoteHost.isBlank() && remotePort > 0 && !remoteServiceName.isBlank();
     }
 
     public String getUserName() {

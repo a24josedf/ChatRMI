@@ -2,7 +2,7 @@
 
 Proyecto de comunicacion distribuida mediante Java RMI.
 
-El proyecto contiene una sola aplicacion. Para cumplir el enunciado, esta aplicacion se ejecuta dos veces en dos JVM distintas. Cada instancia actua a la vez como:
+El proyecto contiene una sola aplicacion. Para cumplir el enunciado, esta aplicacion se ejecuta dos veces en dos JVM distintas. En cada ventana el usuario introduce manualmente sus datos. Cada instancia actua a la vez como:
 
 - servidor RMI: publica su propio objeto remoto para recibir mensajes;
 - cliente RMI: localiza el objeto remoto de la otra instancia y le envia mensajes.
@@ -38,27 +38,38 @@ La clase principal es:
 com.mycompany.chatrmi.ChatRMI
 ```
 
-### Nodo 1
+### Datos para el nodo 1
 
-Ejecuta la aplicacion con estos argumentos:
+En la primera ventana escribe:
 
 ```text
-Usuario1 1099 ChatUsuario1 localhost 1100 ChatUsuario2
+Usuario: Usuario1
+Puerto local: 1099
+Nombre local: ChatUsuario1
+Host remoto: localhost
+Puerto remoto: 1100
+Nombre remoto: ChatUsuario2
 ```
 
-### Nodo 2
+### Datos para el nodo 2
 
-Ejecuta otra vez la misma aplicacion con estos argumentos:
+En la segunda ventana escribe:
 
 ```text
-Usuario2 1100 ChatUsuario2 localhost 1099 ChatUsuario1
+Usuario: Usuario2
+Puerto local: 1100
+Nombre local: ChatUsuario2
+Host remoto: localhost
+Puerto remoto: 1099
+Nombre remoto: ChatUsuario1
 ```
 
 ## Uso
 
 1. Arranca las dos instancias.
-2. Cada una publica automaticamente su servicio local.
-3. Pulsa `Conectar` en las dos ventanas.
-4. Escribe mensajes desde cualquiera de las dos ventanas.
+2. Rellena los datos de cada ventana.
+3. Pulsa `Publicar` en las dos ventanas.
+4. Pulsa `Conectar` en las dos ventanas.
+5. Escribe mensajes desde cualquiera de las dos ventanas.
 
-Si no se pasan argumentos, la aplicacion arranca como `Usuario1`.
+Tambien se pueden seguir usando argumentos de ejecucion si se quiere, pero por defecto la ventana aparece vacia para que el usuario introduzca todos los datos.

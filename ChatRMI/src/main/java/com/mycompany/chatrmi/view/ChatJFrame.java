@@ -237,10 +237,10 @@ public class ChatJFrame extends javax.swing.JFrame {
 
     private void setDefaultValues(ChatConfig config) {
         userTextField.setText(config.getUserName());
-        localPortTextField.setText(String.valueOf(config.getLocalPort()));
+        localPortTextField.setText(config.getLocalPort() > 0 ? String.valueOf(config.getLocalPort()) : "");
         localNameTextField.setText(config.getLocalServiceName());
         remoteHostTextField.setText(config.getRemoteHost());
-        remotePortTextField.setText(String.valueOf(config.getRemotePort()));
+        remotePortTextField.setText(config.getRemotePort() > 0 ? String.valueOf(config.getRemotePort()) : "");
         remoteNameTextField.setText(config.getRemoteServiceName());
     }
 
